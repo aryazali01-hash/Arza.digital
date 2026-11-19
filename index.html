@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARZA Digital — Digital Infrastructure & Business Process Automation</title>
+  <meta name="description" content="ARZA Digital Makassar: Solusi terpadu pengembangan Website Korporat, Company Profile, Sistem Kasir POS Kustom, Automasi WhatsApp AI, dan Dasbor KPI Interaktif." />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              900: '#0F172A',
+              800: '#1E293B',
+              700: '#334155',
+            },
+            brand: {
+              50: '#F0F9FF',
+              100: '#E0F2FE',
+              400: '#38BDF8',
+              500: '#0EA5E9',
+              600: '#0284C7',
+              700: '#0369A1',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Chart.js CDN for Interactive KPI Dashboard -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* Custom subtle grid pattern for corporate hero */
+    .hero-grid-bg {
+      background-image: radial-gradient(rgba(56, 189, 248, 0.14) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    /* Custom scrollbar for smooth mobile horizontal tables/tabs if needed */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-600 selection:text-white">
+
+  <!-- ==================== 1. STICKY HEADER ==================== -->
+  <header class="sticky top-0 z-50 bg-navy-900/95 backdrop-blur-md border-b border-slate-800 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
+      <!-- Brand Identity: Geometric Monogram AZ + Brand Name -->
+      <a href="#top" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-navy-800 border-2 border-brand-500 flex flex-col items-center justify-center shadow-inner transition-transform duration-200 group-hover:scale-105">
+          <span class="text-white font-extrabold text-base sm:text-lg tracking-tight leading-none">
+            A<span class="text-brand-400">Z</span>
+          </span>
+          <span class="w-6 h-0.5 bg-brand-400 rounded-full mt-1"></span>
+        </div>
+        <div>
+          <span class="block text-white font-extrabold text-base sm:text-lg tracking-wide leading-tight">
+            ARZA <span class="text-brand-400">DIGITAL</span>
+          </span>
+          <span class="hidden sm:block text-[11px] text-slate-400 font-medium tracking-wider uppercase">
+            Infrastructure &amp; Automation
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#layanan" class="hover:text-brand-400 transition-colors">Layanan</a>
+        <a href="#live-demo" class="hover:text-brand-400 transition-colors flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Live Demo KPI
+        </a>
+        <a href="#keunggulan" class="hover:text-brand-400 transition-colors">Keunggulan</a>
+        <a href="#alur-kerja" class="hover:text-brand-400 transition-colors">Alur Kerja</a>
+        <a href="#kontak" class="hover:text-brand-400 transition-colors">Kontak</a>
+      </nav>
+
+      <!-- Sticky CTA Button: Konsultasi WA -->
+      <a
+        href="https://wa.me/6285820888377?text=Halo%20ARZA%20Digital,%20saya%20tertarik%20untuk%20berkonsultasi%20mengenai%20solusi%20digital%20%26%20automasi%20bisnis."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 active:bg-brand-700 text-white font-semibold text-xs sm:text-sm px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl shadow-md shadow-brand-600/25 transition-all duration-200 min-h-[44px]"
+      >
+        <!-- WhatsApp SVG Icon -->
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+        </svg>
+        <span>Konsultasi WA</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ==================== 2. HERO SECTION ==================== -->
+  <section id="top" class="relative bg-navy-900 text-white hero-grid-bg overflow-hidden border-b border-slate-800">
+    <!-- Subtle Gradient Glow -->
+    <div class="absolute -top-24 -right-24 w-80 h-80 bg-brand-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-brand-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
+      <div class="max-w-3xl">
+        <!-- Location & Corporate Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-800 border border-slate-700 text-brand-400 text-xs sm:text-sm font-semibold mb-6">
+          <span class="w-2 h-2 rounded-full bg-brand-400"></span>
+          <span>Digital Infrastructure &amp; Business Process Automation • Makassar</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.18] text-white mb-6">
+          Membangun Identitas Korporat yang Kredibel dan Sistem Operasional yang Terukur
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl">
+          ARZA Digital mendampingi perusahaan, kontraktor, klinik, dan pelaku usaha progresif di Indonesia Timur melalui solusi terpadu pengembangan <strong class="text-white font-semibold">Website &amp; Company Profile</strong>, <strong class="text-white font-semibold">Sistem Kasir POS Kustom</strong>, <strong class="text-white font-semibold">Automasi WhatsApp AI 24/7</strong>, serta <strong class="text-white font-semibold">Dasbor Pemantauan KPI Interaktif</strong>.
+        </p>
+
+        <!-- Primary & Secondary CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
+          <a
+            href="https://wa.me/6285820888377?text=Halo%20ARZA%20Digital,%20saya%20ingin%20menjadwalkan%20sesi%20konsultasi%20dan%20demo%20sistem%20untuk%20perusahaan%20kami."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2.5 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm sm:text-base px-6 py-4 rounded-xl shadow-lg shadow-brand-600/30 transition-all min-h-[52px]"
+          >
+            <span>Jadwalkan Konsultasi Gratis</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a
+            href="#live-demo"
+            class="inline-flex items-center justify-center gap-2 bg-navy-800 hover:bg-slate-700 text-white border border-slate-700 font-semibold text-sm sm:text-base px-6 py-4 rounded-xl transition-all min-h-[52px]"
+          >
+            <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            <span>Coba Live Demo Dasbor KPI</span>
+          </a>
+        </div>
+
+        <!-- Corporate Trust Metrics Bar -->
+        <div class="mt-12 pt-8 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-3 gap-6">
+          <div>
+            <p class="text-2xl sm:text-3xl font-extrabold text-white">4 Pilar</p>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">Ekosistem Solusi Digital Terintegrasi</p>
+          </div>
+          <div>
+            <p class="text-2xl sm:text-3xl font-extrabold text-brand-400">100%</p>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">Kustomisasi Sesuai Alur Kerja Bisnis</p>
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <p class="text-2xl sm:text-3xl font-extrabold text-white">Makassar</p>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">Dukungan Konsultasi &amp; Demo Langsung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3. EMPAT PILAR LAYANAN UTAMA (BENTO GRID) ==================== -->
+  <section id="layanan" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-10 sm:mb-14">
+      <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-600 mb-2">
+        Portofolio Layanan Korporat
+      </p>
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy-900 tracking-tight">
+        Empat Pilar Layanan Utama
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+        Dirancang untuk menjawab kebutuhan menyeluruh perusahaan modern: membangun kredibilitas eksternal sekaligus mengefisienkan kontrol operasional internal.
+      </p>
+    </div>
+
+    <!-- Bento Grid 2x2 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Pilar 1 -->
+      <article class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-400/60 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center border border-brand-100">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate-100 text-slate-600">
+              Pilar 01 • Kredibilitas B2B
+            </span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-navy-900 mb-3">
+            Pengembangan Website Korporat &amp; Company Profile
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">
+            Perancangan <em>website</em> resmi perusahaan dengan optimasi perangkat <em>mobile</em> dan struktur SEO dasar, disertai penyusunan dokumen <em>Company Profile</em> digital maupun cetak lengkap dengan penulisan narasi bisnis berstandar korporat.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-2 text-xs font-medium text-navy-800">
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Siap Syarat Tender</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Copywriting Korporat</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Mobile-First Web</span>
+        </div>
+      </article>
+
+      <!-- Pilar 2 -->
+      <article class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-400/60 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center border border-brand-100">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate-100 text-slate-600">
+              Pilar 02 • Efisiensi Transaksi
+            </span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-navy-900 mb-3">
+            Sistem Kasir Digital (POS) &amp; Manajemen Inventaris Kustom
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">
+            Aplikasi kasir dan pencatatan stok berbasis web ringan yang disesuaikan dengan alur bisnis Anda—mendukung harga dan satuan bertingkat (eceran/grosir), pemindaian <em>barcode</em>, serta rekap pembukuan laba kotor harian otomatis tanpa beban langganan bulanan mahal.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-2 text-xs font-medium text-navy-800">
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Stok Multi-Satuan</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Scan Barcode</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Laporan Kas Otomatis</span>
+        </div>
+      </article>
+
+      <!-- Pilar 3 -->
+      <article class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-400/60 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center border border-brand-100">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate-100 text-slate-600">
+              Pilar 03 • Automasi Layanan
+            </span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-navy-900 mb-3">
+            Automasi Layanan Pelanggan WhatsApp &amp; Asisten AI 24/7
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">
+            Implementasi sistem respons otomatis berbasis kecerdasan buatan (AI) pada WhatsApp Bisnis yang terintegrasi dengan basis data Google Sheets untuk menjawab informasi produk atau harga secara instan, menjadwalkan <em>booking</em>, dan merekap pesanan masuk.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-2 text-xs font-medium text-navy-800">
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Auto-Reply AI 24 Jam</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Integrasi Google Sheets</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Rekap Order Instan</span>
+        </div>
+      </article>
+
+      <!-- Pilar 4 -->
+      <article class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-400/60 transition-all flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-5">
+            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center border border-brand-100">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate-100 text-slate-600">
+              Pilar 04 • Analitik Manajemen
+            </span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-navy-900 mb-3">
+            Dasbor Laporan Penjualan &amp; Pemantauan KPI Interaktif
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">
+            Transformasi data transaksi mentah dari cabang maupun tim penjualan lapangan menjadi dasbor visual interaktif berbasis web (<em>Bento Grid Analytics</em>) yang dapat dipantau jajaran pimpinan secara <em>real-time</em> melalui <em>smartphone</em>.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-100 flex flex-wrap gap-2 text-xs font-medium text-navy-800">
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Pantauan Multi-Cabang</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Evaluasi Target Tim</span>
+          <span class="px-2.5 py-1 rounded-lg bg-slate-100">Akses Mobile Real-Time</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==================== 4. INTERACTIVE LIVE DEMO SHOWCASE ==================== -->
+  <section id="live-demo" class="py-16 sm:py-24 bg-navy-900 text-white border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-600/20 border border-brand-500/40 text-brand-400 text-xs font-bold uppercase tracking-wider mb-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>Interactive Live Prototype</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+            Simulasi Dasbor KPI Penjualan &amp; Promotor
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base mt-2.5 leading-relaxed">
+            Uji coba langsung purwarupa sistem analitik ARZA Digital. Pilih filter cabang toko di sebelah kanan untuk melihat pembaruan grafik mingguan, performa promotor, dan komposisi produk secara dinamis.
+          </p>
+        </div>
+
+        <!-- Store Filter Dropdown -->
+        <div class="w-full sm:w-auto min-w-[260px]">
+          <label for="storeFilter" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+            Filter Cabang Operasional:
+          </label>
+          <div class="relative">
+            <select
+              id="storeFilter"
+              class="w-full appearance-none bg-navy-800 border-2 border-brand-500/70 hover:border-brand-400 text-white font-semibold text-sm rounded-xl px-4 py-3.5 pr-10 focus:outline-none focus:ring-2 focus:ring-brand-400 transition-colors cursor-pointer min-h-[48px]"
+            >
+              <option value="all">Semua Cabang (3 Toko Aktif)</option>
+              <option value="toko_a">Toko A — Pusat Kota</option>
+              <option value="toko_b">Toko B — Mall Utama</option>
+              <option value="toko_c">Toko C — Plaza Elektronik</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-brand-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Embedded Dashboard Container (Light/Clean Bento Card Surface for High Readability) -->
+      <div class="bg-slate-100 text-slate-800 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl border border-slate-700/60">
+        <!-- Dashboard Top Status Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-6 border-b border-slate-200">
+          <div class="flex items-center gap-2.5">
+            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+            <span id="activeStoreLabel" class="font-bold text-navy-900 text-sm sm:text-base">
+              Menampilkan Data: Semua Cabang (Konsolidasi)
+            </span>
+          </div>
+          <span class="text-xs font-semibold text-slate-500 bg-white px-3 py-1.5 rounded-lg border border-slate-200">
+            Periode Laporan: Bulan Berjalan (Minggu 1 – 4)
+          </span>
+        </div>
+
+        <!-- 4 KPI Summary Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <!-- KPI 1 -->
+          <div class="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Pencapaian Unit</p>
+            <div class="mt-2 flex items-baseline justify-between">
+              <p id="kpiTotalUnits" class="text-2xl sm:text-3xl font-extrabold text-navy-900">1.060 Unit</p>
+              <span id="kpiAchievementBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700">
+                106,0%
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 mt-2">Akumulasi penjualan Minggu 1–4</p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Target Bulanan</p>
+            <div class="mt-2 flex items-baseline justify-between">
+              <p id="kpiMonthlyTarget" class="text-2xl sm:text-3xl font-extrabold text-navy-900">1.000 Unit</p>
+              <span class="text-xs font-semibold text-brand-600">KPI Standar</span>
+            </div>
+            <p id="kpiTargetNote" class="text-xs text-slate-500 mt-2">10 Promotor × 100 Unit/bulan</p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Cabang Aktif</p>
+            <div class="mt-2 flex items-baseline justify-between">
+              <p id="kpiActiveBranches" class="text-2xl sm:text-3xl font-extrabold text-navy-900">3 Cabang</p>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-brand-50 text-brand-700">Online</span>
+            </div>
+            <p id="kpiBranchNote" class="text-xs text-slate-500 mt-2">Pusat Kota, Mall Utama, Plaza</p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-sm">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Pertumbuhan Mingguan</p>
+            <div class="mt-2 flex items-baseline justify-between">
+              <p id="kpiWeeklyGrowth" class="text-2xl sm:text-3xl font-extrabold text-emerald-600">+50,0%</p>
+              <span class="text-xs font-semibold text-slate-500">W3 → W4</span>
+            </div>
+            <p id="kpiGrowthNote" class="text-xs text-slate-500 mt-2">Lonjakan 300 ke 450 unit</p>
+          </div>
+        </div>
+
+        <!-- Bento Main Analytics Row: Weekly Trend Chart + Top 5 Promoters + Top Product Mix -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Weekly Sales Trend Chart (6 cols on desktop) -->
+          <div class="lg:col-span-6 bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+            <div class="flex items-start justify-between gap-2 mb-4">
+              <div>
+                <h3 class="text-base sm:text-lg font-bold text-navy-900">Tren Penjualan Mingguan</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Distribusi unit terjual Minggu 1 hingga Minggu 4</p>
+              </div>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700">
+                Unit Terjual
+              </span>
+            </div>
+            <div class="relative w-full h-64 sm:h-72">
+              <canvas id="weeklyTrendChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Top 5 Promoters Progress Bars (3 cols on desktop) -->
+          <div class="lg:col-span-3 bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="text-base font-bold text-navy-900">Top 5 Promotor</h3>
+                <span class="text-[11px] font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded">Target 100</span>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Pencapaian individu terhadap kuota bulanan</p>
+
+              <div id="promoterList" class="space-y-3.5">
+                <!-- Populated dynamically via JS -->
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-4 pt-3 border-t border-slate-100">
+              *Indikator hijau menandakan target ≥ 100 unit tercapai.
+            </p>
+          </div>
+
+          <!-- Top Product Mix Breakdown (3 cols on desktop) -->
+          <div class="lg:col-span-3 bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="text-base font-bold text-navy-900">Komposisi Produk</h3>
+                <span class="text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">Top 5 SKU</span>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Kontribusi penjualan berdasarkan model perangkat</p>
+
+              <div id="productMixList" class="space-y-3.5">
+                <!-- Populated dynamically via JS -->
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-4 pt-3 border-t border-slate-100">
+              *Data tersinkronisasi otomatis dari sistem POS cabang.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 5. KEUNGGULAN KOMPETITIF & ALUR KERJA ==================== -->
+  <section id="keunggulan" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Part A: Why Partner With ARZA Digital -->
+    <div class="mb-16 sm:mb-24">
+      <div class="max-w-3xl mb-10">
+        <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-600 mb-2">
+          Keunggulan Kompetitif
+        </p>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy-900 tracking-tight">
+          Mengapa Bermitra dengan ARZA Digital?
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-navy-900 text-brand-400 font-extrabold text-sm flex items-center justify-center mb-4">
+            01
+          </div>
+          <h3 class="font-bold text-navy-900 text-base mb-2">Ekosistem Solusi Terpadu</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Seluruh kebutuhan identitas korporat, sistem kasir POS, automasi WhatsApp, hingga dasbor pelaporan ditangani oleh satu mitra teknologi yang saling terintegrasi.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-navy-900 text-brand-400 font-extrabold text-sm flex items-center justify-center mb-4">
+            02
+          </div>
+          <h3 class="font-bold text-navy-900 text-base mb-2">Ringan &amp; Ramah Mobile</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Antarmuka bersih yang ringan diakses melalui <em>smartphone</em> maupun komputer standar tanpa memerlukan investasi infrastruktur <em>server</em> fisik yang mahal.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-navy-900 text-brand-400 font-extrabold text-sm flex items-center justify-center mb-4">
+            03
+          </div>
+          <h3 class="font-bold text-navy-900 text-base mb-2">Kustomisasi Penuh</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Berbeda dengan perangkat lunak massal yang kaku, sistem dikonfigurasi mengikuti struktur harga, satuan stok, dan indikator kinerja (KPI) spesifik bisnis Anda.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <div class="w-10 h-10 rounded-lg bg-navy-900 text-brand-400 font-extrabold text-sm flex items-center justify-center mb-4">
+            04
+          </div>
+          <h3 class="font-bold text-navy-900 text-base mb-2">Dukungan Lokal Makassar</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Kehadiran tim operasional di Makassar memudahkan sesi konsultasi tatap muka, demonstrasi sistem langsung di lokasi usaha, hingga pelatihan staf operasional.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part B: 5-Step Client Engagement Process -->
+    <div id="alur-kerja" class="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-slate-200 shadow-sm">
+      <div class="max-w-3xl mb-10">
+        <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-600 mb-2">
+          Metodologi Implementasi
+        </p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 tracking-tight">
+          5 Tahapan Kerja Sama Klien
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">
+          Alur kerja terstruktur dan transparan untuk memastikan setiap sistem selesai tepat waktu dan siap digunakan tim operasional Anda.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+        <!-- Step 1 -->
+        <div class="relative p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
+          <span class="inline-block text-xs font-extrabold text-brand-600 bg-brand-100 px-2.5 py-1 rounded-md mb-3">
+            Tahap 1
+          </span>
+          <h3 class="font-bold text-navy-900 text-sm sm:text-base mb-2">Konsultasi &amp; Pemetaan</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Diskusi langsung di Makassar atau daring untuk memetakan alur kerja bisnis, kendala utama, dan target pencapaian klien.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
+          <span class="inline-block text-xs font-extrabold text-brand-600 bg-brand-100 px-2.5 py-1 rounded-md mb-3">
+            Tahap 2
+          </span>
+          <h3 class="font-bold text-navy-900 text-sm sm:text-base mb-2">Demo &amp; Penawaran</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Penyajian simulasi purwarupa sistem disertai rincian ruang lingkup pekerjaan, jadwal, dan penawaran biaya transparan.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
+          <span class="inline-block text-xs font-extrabold text-brand-600 bg-brand-100 px-2.5 py-1 rounded-md mb-3">
+            Tahap 3
+          </span>
+          <h3 class="font-bold text-navy-900 text-sm sm:text-base mb-2">Pengembangan Sistem</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Perancangan antarmuka, penulisan konten korporat, pemrograman kustom, dan integrasi data dengan laporan progres berkala.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
+          <span class="inline-block text-xs font-extrabold text-brand-600 bg-brand-100 px-2.5 py-1 rounded-md mb-3">
+            Tahap 4
+          </span>
+          <h3 class="font-bold text-navy-900 text-sm sm:text-base mb-2">Uji Coba &amp; Pelatihan</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Pengujian menyeluruh pada perangkat operasional klien, dilengkapi sesi pendampingan penggunaan bagi staf dan admin.
+          </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="relative p-5 rounded-2xl bg-navy-900 text-white border border-navy-800">
+          <span class="inline-block text-xs font-extrabold text-navy-900 bg-brand-400 px-2.5 py-1 rounded-md mb-3">
+            Tahap 5
+          </span>
+          <h3 class="font-bold text-white text-sm sm:text-base mb-2">Go-Live &amp; Dukungan</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Peluncuran sistem secara resmi beserta garansi pemeliharaan teknis (<em>maintenance</em>) untuk menjamin stabilitas jangka panjang.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 6. FOOTER & OFFICIAL CONTACT INFO ==================== -->
+  <footer id="kontak" class="bg-navy-900 text-slate-300 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        <!-- Brand & Corporate Summary -->
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-xl bg-navy-800 border-2 border-brand-500 flex flex-col items-center justify-center">
+              <span class="text-white font-extrabold text-lg tracking-tight leading-none">
+                A<span class="text-brand-400">Z</span>
+              </span>
+              <span class="w-6 h-0.5 bg-brand-400 rounded-full mt-1"></span>
+            </div>
+            <div>
+              <span class="block text-white font-extrabold text-lg tracking-wide">
+                ARZA <span class="text-brand-400">DIGITAL</span>
+              </span>
+              <span class="block text-xs text-slate-400">
+                Digital Infrastructure &amp; Business Process Automation
+              </span>
+            </div>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed max-w-md mb-6">
+            Mitra strategis transformasi digital untuk perusahaan, kontraktor, klinik, dan pelaku usaha bertumbuh di Kota Makassar dan Indonesia Timur.
+          </p>
+          <a
+            href="https://wa.me/6285820888377?text=Halo%20ARZA%20Digital,%20saya%20ingin%20berkonsultasi%20mengenai%20layanan%20Anda."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2.5 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-brand-600/25 transition-all min-h-[48px]"
+          >
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+            </svg>
+            <span>Hubungi via WhatsApp (0858-2088-8377)</span>
+          </a>
+        </div>
+
+        <!-- Official Contact Details -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-navy-800/70 rounded-2xl p-6 border border-slate-800">
+            <h3 class="text-white font-bold text-base mb-4">Informasi Kantor &amp; Kontak</h3>
+            <ul class="space-y-3.5 text-sm">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-brand-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>
+                  <strong class="block text-white">Alamat Operasional:</strong>
+                  Jl. Mesjid Babul Jannah No. 12, Kota Makassar, Sulawesi Selatan
+                </span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-brand-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <span>
+                  <strong class="block text-white">WhatsApp Bisnis:</strong>
+                  <a href="https://wa.me/6285820888377" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:underline font-semibold">
+                    0858-2088-8377
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-navy-800/70 rounded-2xl p-6 border border-slate-800">
+            <h3 class="text-white font-bold text-base mb-4">Manajemen &amp; Jam Layanan</h3>
+            <ul class="space-y-3.5 text-sm">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-brand-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span>
+                  <strong class="block text-white">Founder &amp; Principal Consultant:</strong>
+                  Muh. Ary Azali
+                </span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-brand-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>
+                  <strong class="block text-white">Jam Operasional:</strong>
+                  Senin – Sabtu, Pukul 09.00 – 17.00 WITA
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>&copy; 2026 ARZA Digital Makassar. Seluruh Hak Cipta Dilindungi.</p>
+        <p>Digital Infrastructure &amp; Business Process Automation</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE KPI DASHBOARD SCRIPT ==================== -->
+  <script>
+    // Dataset for each store filter option
+    const dashboardDatasets = {
+      all: {
+        label: 'Menampilkan Data: Semua Cabang (Konsolidasi)',
+        totalUnits: '1.060 Unit',
+        achievementPct: '106,0%',
+        monthlyTarget: '1.000 Unit',
+        targetNote: '10 Promotor × 100 Unit/bulan',
+        activeBranches: '3 Cabang',
+        branchNote: 'Pusat Kota, Mall Utama, Plaza',
+        weeklyGrowth: '+50,0%',
+        growthNote: 'Lonjakan 300 ke 450 unit (W3 → W4)',
+        weeklyTrend: [120, 190, 300, 450],
+        promoters: [
+          { id: 'ID 12345', branch: 'Pusat Kota', units: 124, target: 100 },
+          { id: 'ID 12346', branch: 'Mall Utama', units: 118, target: 100 },
+          { id: 'ID 12347', branch: 'Plaza Elektronik', units: 109, target: 100 },
+          { id: 'ID 12348', branch: 'Pusat Kota', units: 96, target: 100 },
+          { id: 'ID 12349', branch: 'Mall Utama', units: 88, target: 100 }
+        ],
+        products: [
+          { name: 'Oppo Reno16', units: 340, share: 32 },
+          { name: 'Oppo Reno16 Pro', units: 265, share: 25 },
+          { name: 'Oppo Find X8', units: 190, share: 18 },
+          { name: 'Oppo A7x', units: 160, share: 15 },
+          { name: 'Oppo Pad 3 Pro', units: 105, share: 10 }
+        ]
+      },
+      toko_a: {
+        label: 'Menampilkan Data: Toko A — Pusat Kota',
+        totalUnits: '430 Unit',
+        achievementPct: '107,5%',
+        monthlyTarget: '400 Unit',
+        targetNote: '4 Promotor × 100 Unit/bulan',
+        activeBranches: '1 Cabang',
+        branchNote: 'Toko A — Pusat Kota Makassar',
+        weeklyGrowth: '+46,2%',
+        growthNote: 'Lonjakan 130 ke 190 unit (W3 → W4)',
+        weeklyTrend: [45, 65, 130, 190],
+        promoters: [
+          { id: 'ID 12345', branch: 'Pusat Kota', units: 124, target: 100 },
+          { id: 'ID 12348', branch: 'Pusat Kota', units: 108, target: 100 },
+          { id: 'ID 12350', branch: 'Pusat Kota', units: 102, target: 100 },
+          { id: 'ID 12351', branch: 'Pusat Kota', units: 96, target: 100 },
+          { id: 'ID 12352', branch: 'Pusat Kota (Trainee)', units: 64, target: 100 }
+        ],
+        products: [
+          { name: 'Oppo Reno16', units: 142, share: 33 },
+          { name: 'Oppo Reno16 Pro', units: 112, share: 26 },
+          { name: 'Oppo Find X8', units: 73, share: 17 },
+          { name: 'Oppo A7x', units: 60, share: 14 },
+          { name: 'Oppo Pad 3 Pro', units: 43, share: 10 }
+        ]
+      },
+      toko_b: {
+        label: 'Menampilkan Data: Toko B — Mall Utama',
+        totalUnits: '360 Unit',
+        achievementPct: '120,0%',
+        monthlyTarget: '300 Unit',
+        targetNote: '3 Promotor × 100 Unit/bulan',
+        activeBranches: '1 Cabang',
+        branchNote: 'Toko B — Mall Utama Makassar',
+        weeklyGrowth: '+50,0%',
+        growthNote: 'Lonjakan 100 ke 150 unit (W3 → W4)',
+        weeklyTrend: [45, 65, 100, 150],
+        promoters: [
+          { id: 'ID 12346', branch: 'Mall Utama', units: 128, target: 100 },
+          { id: 'ID 12349', branch: 'Mall Utama', units: 117, target: 100 },
+          { id: 'ID 12353', branch: 'Mall Utama', units: 115, target: 100 },
+          { id: 'ID 12354', branch: 'Mall Utama (Backup)', units: 82, target: 100 },
+          { id: 'ID 12355', branch: 'Mall Utama (Backup)', units: 74, target: 100 }
+        ],
+        products: [
+          { name: 'Oppo Reno16 Pro', units: 108, share: 30 },
+          { name: 'Oppo Reno16', units: 101, share: 28 },
+          { name: 'Oppo Find X8', units: 76, share: 21 },
+          { name: 'Oppo Pad 3 Pro', units: 43, share: 12 },
+          { name: 'Oppo A7x', units: 32, share: 9 }
+        ]
+      },
+      toko_c: {
+        label: 'Menampilkan Data: Toko C — Plaza Elektronik',
+        totalUnits: '270 Unit',
+        achievementPct: '90,0%',
+        monthlyTarget: '300 Unit',
+        targetNote: '3 Promotor × 100 Unit/bulan',
+        activeBranches: '1 Cabang',
+        branchNote: 'Toko C — Plaza Elektronik Makassar',
+        weeklyGrowth: '+57,1%',
+        growthNote: 'Lonjakan 70 ke 110 unit (W3 → W4)',
+        weeklyTrend: [30, 60, 70, 110],
+        promoters: [
+          { id: 'ID 12347', branch: 'Plaza Elektronik', units: 109, target: 100 },
+          { id: 'ID 12356', branch: 'Plaza Elektronik', units: 89, target: 100 },
+          { id: 'ID 12357', branch: 'Plaza Elektronik', units: 72, target: 100 },
+          { id: 'ID 12358', branch: 'Plaza (Part-Time)', units: 58, target: 100 },
+          { id: 'ID 12359', branch: 'Plaza (Part-Time)', units: 45, target: 100 }
+        ],
+        products: [
+          { name: 'Oppo Reno16', units: 97, share: 36 },
+          { name: 'Oppo A7x', units: 68, share: 25 },
+          { name: 'Oppo Reno16 Pro', units: 45, share: 17 },
+          { name: 'Oppo Find X8', units: 41, share: 15 },
+          { name: 'Oppo Pad 3 Pro', units: 19, share: 7 }
+        ]
+      }
+    };
+
+    let weeklyChartInstance = null;
+
+    function initWeeklyChart(initialData) {
+      const ctx = document.getElementById('weeklyTrendChart').getContext('2d');
+      const gradient = ctx.createLinearGradient(0, 0, 0, 280);
+      gradient.addColorStop(0, 'rgba(2, 132, 199, 0.35)');
+      gradient.addColorStop(1, 'rgba(2, 132, 199, 0.02)');
+
+      weeklyChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'],
+          datasets: [{
+            label: 'Unit Terjual',
+            data: initialData,
+            borderColor: '#0284C7',
+            backgroundColor: gradient,
+            borderWidth: 3,
+            pointBackgroundColor: '#0F172A',
+            pointBorderColor: '#38BDF8',
+            pointBorderWidth: 2.5,
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            fill: true,
+            tension: 0.35
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0F172A',
+              titleColor: '#38BDF8',
+              bodyColor: '#FFFFFF',
+              padding: 12,
+              cornerRadius: 10,
+              displayColors: false,
+              callbacks: {
+                label: (context) => `Penjualan: ${context.parsed.y} Unit`
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: '#E2E8F0', drawBorder: false },
+              ticks: {
+                color: '#64748B',
+                font: { family: 'Inter', size: 11, weight: '600' }
+              }
+            },
+            x: {
+              grid: { display: false },
+              ticks: {
+                color: '#1E293B',
+                font: { family: 'Inter', size: 12, weight: '600' }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function renderPromoters(promoters) {
+      const container = document.getElementById('promoterList');
+      container.innerHTML = promoters.map((p) => {
+        const pct = Math.min(Math.round((p.units / p.target) * 100), 100);
+        const reached = p.units >= p.target;
+        const barColor = reached ? 'bg-emerald-500' : 'bg-brand-600';
+        const textColor = reached ? 'text-emerald-700' : 'text-navy-800';
+
+        return `
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1">
+              <div>
+                <span class="font-bold text-navy-900">${p.id}</span>
+                <span class="text-slate-400 ml-1">• ${p.branch}</span>
+              </div>
+              <span class="font-bold ${textColor}">${p.units}/${p.target} Unit</span>
+            </div>
+            <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+              <div class="${barColor} h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderProductMix(products) {
+      const container = document.getElementById('productMixList');
+      const barColors = ['bg-navy-900', 'bg-brand-600', 'bg-brand-500', 'bg-sky-400', 'bg-slate-400'];
+
+      container.innerHTML = products.map((item, idx) => {
+        const color = barColors[idx % barColors.length];
+        return `
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="font-bold text-navy-900">${item.name}</span>
+              <span class="font-semibold text-slate-600">${item.units} Unit (${item.share}%)</span>
+            </div>
+            <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+              <div class="${color} h-full rounded-full transition-all duration-500" style="width: ${item.share}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateDashboard(storeKey) {
+      const data = dashboardDatasets[storeKey] || dashboardDatasets.all;
+
+      // Update text & KPI summary cards
+      document.getElementById('activeStoreLabel').textContent = data.label;
+      document.getElementById('kpiTotalUnits').textContent = data.totalUnits;
+      document.getElementById('kpiAchievementBadge').textContent = data.achievementPct;
+      document.getElementById('kpiMonthlyTarget').textContent = data.monthlyTarget;
+      document.getElementById('kpiTargetNote').textContent = data.targetNote;
+      document.getElementById('kpiActiveBranches').textContent = data.activeBranches;
+      document.getElementById('kpiBranchNote').textContent = data.branchNote;
+      document.getElementById('kpiWeeklyGrowth').textContent = data.weeklyGrowth;
+      document.getElementById('kpiGrowthNote').textContent = data.growthNote;
+
+      // Update Chart.js dataset
+      if (weeklyChartInstance) {
+        weeklyChartInstance.data.datasets[0].data = data.weeklyTrend;
+        weeklyChartInstance.update();
+      }
+
+      // Update lists
+      renderPromoters(data.promoters);
+      renderProductMix(data.products);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const initial = dashboardDatasets.all;
+      initWeeklyChart(initial.weeklyTrend);
+      updateDashboard('all');
+
+      document.getElementById('storeFilter').addEventListener('change', (e) => {
+        updateDashboard(e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>
